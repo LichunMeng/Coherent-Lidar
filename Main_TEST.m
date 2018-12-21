@@ -6,7 +6,7 @@ ROI=1:10;
 Brg=0;
 brg_LIM=[0 1e6];
 FIT_DISPLAY=1;
-[Frq_Return,Amp_MEAN_Brg_rm,Amd_STD,Peak,Frq_Peak,Frq_Peak_FIT,FWHM]=READ_WIND_FILE(FileName,Brg,brg_LIM,FIT_DISPLAY,ROI);
+RS=READ_WIND_FILE(FileName,Brg,brg_LIM,FIT_DISPLAY,ROI);
 %%
 figure()
 plot(Frq_Return,Amp_MEAN_Brg_rm);

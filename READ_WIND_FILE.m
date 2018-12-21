@@ -1,4 +1,4 @@
-function RS=READ_WIND_FILE(FileName,Brg,brg_LIM,FIT_DISPLAY,ROI)
+function Rs=READ_WIND_FILE(FileName,Brg,brg_LIM,FIT_DISPLAY,ROI)
 %% Initialize variables.
 delimiter = '\t';
 
@@ -43,7 +43,7 @@ Amd_STD=std(Amp_Resize(ROI,:));  %%std of the return signal
 Frq_Peak = Frq_Return(I);
 RIO_FIT =1:I+50;
 [ Frq_Peak_FIT,Peak_FIT,FWHM] = FITTING_RS( Frq_Return(RIO_FIT), Amp_MEAN_Brg_rm(RIO_FIT),brg_LIM,FIT_DISPLAY);
-RS=ReSig;
+Rs=ReSig;
 Rs.Frq_Return=Frq_Return; %% x value,1D, Frequency, Mhz
 Rs.Amp_MEAN_Brg_rm=Amp_MEAN_Brg_rm; %% y value, 1D, amplitude
 Rs.Amd_STD=Amd_STD;           %%std of y value, 1D,
