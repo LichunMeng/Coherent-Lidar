@@ -1,4 +1,4 @@
-function [ Peak,FWHM] = FITTING_RS( Frq_Return, Amp_MEAN_Brg_rm,brg_LIM,DISPLAY)
+function [ Frq_Peak,Peak,FWHM] = FITTING_RS( Frq_Return, Amp_MEAN_Brg_rm,brg_LIM,DISPLAY)
 %FITTING_RS Summary of this function goes here
 %   Detailed explanation goes here
 % this function try to fit the returning lidar signal.
@@ -32,7 +32,8 @@ if DISPLAY
     pause(0.2);
     close all
 end
-Peak = fitresult.b;
+Frq_Peak = fitresult.b;
+Peak=fitresult.a;
 FWHM=fitresult.w*2;
 end
 
