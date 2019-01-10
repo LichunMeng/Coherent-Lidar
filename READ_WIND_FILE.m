@@ -1,4 +1,4 @@
-function Rs=READ_WIND_FILE(FileName,Brg,brg_LIM,FIT_DISPLAY,ROI)
+function Rs=READ_WIND_FILE(FileName,Brg,brg_LIM,Width,FIT_DISPLAY,ROI)
 %% Initialize variables.
 delimiter = '\t';
 
@@ -42,17 +42,18 @@ Amd_STD=std(Amp_Resize(ROI,:));  %%std of the return signal
 [Peak I] =max(Amp_MEAN_Brg_rm);
 Frq_Peak = Frq_Return(I);
 RIO_FIT =1:I+50;
-[ Frq_Peak_FIT,Peak_FIT,FWHM] = FITTING_RS( Frq_Return(RIO_FIT), Amp_MEAN_Brg_rm(RIO_FIT),brg_LIM,FIT_DISPLAY);
+%%[ Frq_Peak_FIT,Peak_FIT,FWHM] = FITTING_RS( Frq_Return(RIO_FIT), Amp_MEAN_Brg_rm(RIO_FIT),brg_LIM,FIT_DISPLAY);
 Rs=ReSig;
 Rs.Frq_Return=Frq_Return; %% x value,1D, Frequency, Mhz
 Rs.Amp_MEAN_Brg_rm=Amp_MEAN_Brg_rm; %% y value, 1D, amplitude
 Rs.Amd_STD=Amd_STD;           %%std of y value, 1D,
-Rs.Peak=Peak;            %% Peak amplitude, 0D, given by max()
-Rs.Frq_Peak=Frq_Peak;        %% frequency value correspond to the Peak amplitude, 0D, given by max()
-Rs.Peak_FIT=Peak_FIT;        %% Peak amplitude, 0D, given by fitting
-Rs.Frq_Peak_FIT=Frq_Peak_FIT;    %% frequency value correspond to the Peak amplitude, 0D, given by fit()
-Rs.FWHM=FWHM;            %% width 0D, given by fit()
-
+Rs.Amp_Peak_find=Peak;            %% Peak amplitude, 0D, given by max()
+Rs.Frq_Peak_find=Frq_Peak;        %% frequency value correspond to the Peak amplitude, 0D, given by max()
+%Rs.Amp_Peak_FIT=Peak_FIT;        %% Peak amplitude, 0D, given by fitting
+%Rs.Frq_Peak_FIT=Frq_Peak_FIT;    %% frequency value correspond to the Peak amplitude, 0D, given by fit()
+%Rs.FWHM=FWHM;            %% width 0D, given by fit()
+%Rs.AREA =FWHM*Frq_Peak_FIT;
+Rs.AREA = sum(Rs.Amp_MEAN_Brg_rm(I-Width:I+Width));
 end
 
 

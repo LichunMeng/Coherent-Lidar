@@ -5,8 +5,10 @@ FileName = 'Measurement_0.80__001.txt';
 ROI=1:10;
 Brg=0;
 brg_LIM=[0 1e6];
-FIT_DISPLAY=1;
-RS=READ_WIND_FILE(FileName,Brg,brg_LIM,FIT_DISPLAY,ROI);
+    FIT_DISPLAY=1;
+Width=5;
+%%
+RS=READ_WIND_FILE(FileName,Brg,brg_LIM,Width,FIT_DISPLAY,ROI);
 %%
 figure()
 plot(Frq_Return,Amp_MEAN_Brg_rm);
