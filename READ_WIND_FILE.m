@@ -33,7 +33,7 @@ Amp = dataArray{:, 2};
 Frq_separation = max(Frq)+1; %%number of points for one measurement
 Sample_No=length(Frq)/Frq_separation; %%number of measurement
 
-Frq_Return=Frq(1:Frq_separation)/5'; %%return x value;
+Frq_Return=Frq(1:Frq_separation)*50/256'; %%return x value;
 Amp_Resize =reshape(Amp',Frq_separation,Sample_No)';
 %%
 if Debug
@@ -57,7 +57,7 @@ if FIT_DISPLAY
 [ Frq_Peak_FIT,Peak_FIT,FWHM] = FITTING_RS( Frq_Return(RIO_FIT), Amp_MEAN_Brg_rm(RIO_FIT),brg_LIM,FIT_DISPLAY);
 end
 Rs=ReSig;
-%Rs.Signal_matrix=Amp_Resize;
+Rs.Signal_matrix=Amp_Resize;
 Rs.Measurement_No=x;
 Rs.Frq_Return=Frq_Return; %% x value,1D, Frequency, Mhz
 Rs.Amp_MEAN_Brg_rm=Amp_MEAN_Brg_rm; %% y value, 1D, amplitude
