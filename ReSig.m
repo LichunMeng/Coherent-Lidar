@@ -5,16 +5,20 @@ classdef ReSig
     % 
     
     properties
-        Distance
+        
+        Distance;
         Frq_Return; %% x value,1D, Frequency, Mhz
         Amp_MEAN_Brg_rm; %% y value, 1D, amplitude
         Amd_STD;           %%std of y value, 1D,
         Amp_Peak_find;            %% Peak amplitude, 0D, given by max()
         Frq_Peak_find;        %% frequency value correspond to the Peak amplitude, 0D, given by max()
-        Amp_Peak_FIT;        %% Peak amplitude, 0D, given by fitting
-        Frq_Peak_FIT;    %% frequency value correspond to the Peak amplitude, 0D, given by fit()
+        POWER;        %% Peak amplitude, 0D, given by fitting
+        VOLTAGE;     %% frequency value correspond to the Peak amplitude, 0D, given by fit()
         FWHM;            %% width 0D, given by fit()
         AREA;            %% integration get area
+        Measurement_No;%% number os scanning
+        Signal_matrix; %% all data
+        Peak_Index;
     end
     
     methods
@@ -37,13 +41,15 @@ classdef ReSig
                 case 6
                     FullName='Peak Frequency [MHz]';
                 case 7
-                    FullName='Peak (FIT) [a.u.]';
+                    FullName='Power [mW]';
                 case 8
-                    FullName='Peak Frequency (FIT) [MHz]';
+                    FullName='Voltage [V]';
                 case 9
                     FullName='FWHM [MHz]';
                 case 10
                     FullName='Area [a.u.]';
+                case 11
+                    FullName='Measurement NO.';
                 otherwise
                     error('Unknow key');
             end
